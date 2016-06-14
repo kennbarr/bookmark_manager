@@ -10,4 +10,5 @@ group :test do
   gem 'rspec'
   gem 'rspec-mocks'
   gem 'capybara'
+  gem 'database_cleaner'
 end

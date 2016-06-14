@@ -1,10 +1,11 @@
+ENV['RACK_ENV'] = 'test'
+
 require 'rspec'
 require 'capybara'
 require 'capybara/rspec'
 require './models/link'
 require './app'
-
-ENV['RACK_ENV'] = 'test'
+require 'database_cleaner'
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 
@@ -21,6 +22,19 @@ RSpec.configure do |config|
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
+  end
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
   end
 
 end
