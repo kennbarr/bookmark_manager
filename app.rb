@@ -23,5 +23,15 @@ class BookmarkManager < Sinatra::Base
     redirect '/links'
   end
 
+  get '/tags/bubbles' do
+    @links = []
+    Link.each do |x|
+      x.tags.each do |tag|
+        @links << x if tag.name == "bubbles"
+      end
+    end
+    erb :'links/index'
+  end
+
   run! if app_file == $PROGRAM_NAME
 end
