@@ -1,10 +1,11 @@
+require_relative '../spec_helper'
+
 feature 'Creating links' do
-  secenario 'I can create a new link' do
+  scenario 'I can create a new link' do
     visit '/links/new'
     fill_in 'url', with: 'http://www.zombo.com/'
     fill_in 'title', with: 'This is Zombocom'
-    click_button 'Create link'
-
+    click_button :submit
     expect(current_path).to eq '/links'
 
     within 'ul#links' do
