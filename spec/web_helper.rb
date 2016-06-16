@@ -49,3 +49,10 @@ def sign_up_bad_email
   fill_in(:password_confirmation, with: 'password')
   click_button('Submit')
 end
+
+def sign_in
+  visit('/users/sign_in')
+  fill_in(:email, with: 'riya.pabari@gmail.com')
+  fill_in(:password, with: 'password')
+  click_button('Sign In')
+end

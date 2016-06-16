@@ -56,6 +56,17 @@ feature 'User details' do
 
 	end
 
+	feature 'Sign In' do
+
+		scenario 'registered user can sign in'	do
+			sign_up
+			sign_in
+			expect(current_path).to eq('/links')
+			expect(page).to have_content('Welcome, riya.pabari@gmail.com')
+		end
+
+	end
+
 
 
 end
