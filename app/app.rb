@@ -10,6 +10,7 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
   set :session_secret, 'super secret'
   register Sinatra::Flash
+  use Rack::MethodOverride
 
   get '/' do
     erb(:index)
@@ -51,6 +52,12 @@ class BookmarkManager < Sinatra::Base
     redirect('/links') #personalised links later
   end
 
+  delete '/users/sign_out' do
+    session[:user_id] = nil
+    flash[:error] = ["Goodbye!"]
+    redirect('/link')
+  end
+
   get '/links' do
     @user = User.first(id: session[:user_id])
   	@links = Link.all
@@ -75,6 +82,11 @@ class BookmarkManager < Sinatra::Base
     tag = Tag.first(name: params[:tag])
     @links = tag ? tag.links : []
     erb(:'links/index')
+  end
+
+  get '/link' do
+    current_user
+    erb(:'links/link')
   end
 
   helpers do

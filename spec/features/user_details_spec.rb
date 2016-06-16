@@ -75,6 +75,18 @@ feature 'User details' do
 
 	end
 
+	feature 'Sign Out' do
+
+		scenario 'logged in user can sign out' do
+			sign_up
+			click_button('Sign Out')
+			expect(page).to have_content 'Goodbye!'
+			expect(page).not_to have_content 'Welcome, riya.pabari@gmail.com!'
+			expect(current_path).to eq '/link'
+		end
+
+	end
+
 
 
 end
