@@ -12,4 +12,20 @@ class BookmarkManager < Sinatra::Base
     flash[:error] = ["Invalid username or password"]
     redirect('/users/sign_in')
   end
+
+  get '/users/forgot_password' do
+    erb :'users/forgot_password'
+  end
+
+  post '/users/forgot_password' do
+    user = User.first(email: params[:email])
+    session[:user_id] = user.id
+    redirect '/users/password_reset'
+  end
+
+  get '/users/password_reset' do
+
+
+    erb :'users/password_reset'
+  end
 end
