@@ -1,5 +1,8 @@
 <title>Bookmark Manager</title>
 
+<%= flash[:mismatch] if flash[:mismatch] %>
+<br>
+
 <% if current_user %>
 	Welcome, <%= current_user.email %>!
 <% end %>

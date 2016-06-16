@@ -1,15 +1,10 @@
 <form action='/users' method='post'>
-	<label for="email">
-	Email:
-	<input type="text" name="email">
-	</label>
-	<label for="password">
-	Password:
-	<input type="password" name="password">
-	</label>
-	<label for="password_confirmation">
-	Password confirmation:
-	<input type="password" name="password_confirmation">
-	</label>
+	<% if @email %>
+		<input type="text" name="email" value="<%= @email %>">
+	<% else %>
+		<input type="text" name="email" placeholder="email address">
+	<% end %>
+	<input type="password" name="password" placeholder="password">
+	<input type="password" name="password_confirmation" placeholder="confirm password">
 	<input type="submit" value="Submit">
 </form>

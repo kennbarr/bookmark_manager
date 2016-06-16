@@ -9,4 +9,5 @@ feature 'Adding sites' do
 			expect(page).to have_content('Makers Academy')
 		end
 	end
+
 end
