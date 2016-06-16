@@ -16,8 +16,8 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/users/sign_up' do
-    flash[:mismatch] if flash[:mismatch]
-    @email = session[:user_email] if flash[:mismatch]
+    flash[:error] if flash[:error]
+    @email = session[:user_email] if flash[:error]
     erb(:'users/sign_up')
   end
 
@@ -29,7 +29,8 @@ class BookmarkManager < Sinatra::Base
 
     if user.id.nil?
       session[:user_email] = params[:email]
-      flash[:mismatch] = "Password and confirmation password do not match"
+      flash[:error] = user.errors.full_messages
+
       redirect '/users/sign_up'
     end
 

@@ -1,6 +1,13 @@
 <title>Bookmark Manager</title>
 
-<%= flash[:mismatch] if flash[:mismatch] %>
+<% if flash[:error] %>
+	<ul id="errors">Errors to be addressed:</ul>
+	<% flash[:error].each do |error| %>
+		<li><%= error %></li>
+	<% end %>
+
+<% end %>
+
 <br>
 
 <% if current_user %>
