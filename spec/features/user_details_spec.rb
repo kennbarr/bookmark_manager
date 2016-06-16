@@ -1,17 +1,29 @@
 feature 'User details' do
 
-	scenario 'when user signs up, user count increases by 1' do
-		expect{sign_up}.to change(User, :count).by(1)
-	end
+	feature 'Sign Up' do
 
-	scenario 'page displays welcome message to new user' do
-		sign_up
-		expect(page).to have_content("Welcome, riya.pabari@gmail.com!")
-	end
+		scenario 'when user signs up, user count increases by 1' do
+			expect{sign_up}.to change(User, :count).by(1)
+		end
 
-	scenario 'email address for user is correct' do
-		sign_up
-		expect(User.first.email).to eq('riya.pabari@gmail.com')
+		scenario 'page displays welcome message to new user' do
+			sign_up
+			expect(page).to have_content("Welcome, riya.pabari@gmail.com!")
+		end
+
+		scenario 'email address for user is correct' do
+			sign_up
+			expect(User.first.email).to eq('riya.pabari@gmail.com')
+		end
+
+		scenario 'user not added when email not provided' do
+			expect{sign_up_no_email}.not_to change(User, :count)
+		end
+
+		scenario 'user cannot sign in with invalid email' do
+			expect{sign_up_bad_email}.not_to change(User, :count)
+		end
+
 	end
 
 	feature 'Password confirmation' do
@@ -37,5 +49,7 @@ feature 'User details' do
 		end
 
 	end
+
+
 
 end
