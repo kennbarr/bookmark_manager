@@ -5,6 +5,10 @@ class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
   use Rack::MethodOverride
 
+  register Sinatra::Partial
+  set :partial_template_engine, :erb
+  enable :partial_underscores
+
   get '/' do
     erb(:'index')
   end

@@ -1,23 +1,7 @@
 <title>Bookmark Manager</title>
 
-<% if flash[:error] %>
-	<ul id="errors">Errors to be addressed:</ul>
-	<% flash[:error].each do |error| %>
-		<li><%= error %></li>
-	<% end %>
-
-<% end %>
-
-<BR>
-
-<% if current_user %>
-	Welcome, <%= current_user.email %>!
-	<form action='/users/sign_out' method='post'>
-		<input type='hidden' name='_method' value='delete'>
-		<input type='submit' value='Sign Out'>
-	</form>
-<% end %>
+<%= partial :welcome %>
+<%= partial :flash %>
 <%= yield %>
 
-<BR>
 
