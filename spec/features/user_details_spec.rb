@@ -65,6 +65,14 @@ feature 'User details' do
 			expect(page).to have_content('Welcome, riya.pabari@gmail.com')
 		end
 
+		scenario 'registered user cannot sign in with incorrect password'	do
+			sign_up
+			sign_in_wrong_password
+			expect(current_path).to eq '/users/sign_in'
+			message = "Invalid username or password"
+			expect(page).to have_content message
+		end
+
 	end
 
 

@@ -56,3 +56,10 @@ def sign_in
   fill_in(:password, with: 'password')
   click_button('Sign In')
 end
+
+def sign_in_wrong_password
+  visit('/users/sign_in')
+  fill_in(:email, with: 'riya.pabari@gmail.com')
+  fill_in(:password, with: 'different')
+  click_button('Sign In')
+end
